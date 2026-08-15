@@ -1,0 +1,21 @@
+(kicad_sch
+	(version 20260306)
+	(generator "eeschema")
+	(generator_version "10.0")
+	(uuid "80dd4dc2-e1a5-4f20-a05b-f29ff7612afe")
+	(paper "A4")
+	(title_block
+		(title "Universal Hacker Badge")
+		(date "2026-08-15")
+		(rev "1.0.0")
+		(company "Gianluca Rainis")
+		(comment 1 "gianluca-rainis on GitHub")
+	)
+	(lib_symbols)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
+)
