@@ -6,7 +6,7 @@
 	(paper "A3")
 	(title_block
 		(title "Universal Hacker Badge")
-		(date "2026-08-23")
+		(date "2026-08-27")
 		(rev "1.0.0")
 		(company "Gianluca Rainis")
 		(comment 1 "gianluca-rainis on GitHub")
@@ -7663,6 +7663,18 @@
 		(uuid "a3ec213d-3fc0-4f39-b0f8-ec8d5f2d6483")
 	)
 	(rectangle
+		(start 200.66 166.37)
+		(end 228.6 224.79)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid "d9642152-2007-4c80-befb-a71f18ee459e")
+	)
+	(rectangle
 		(start 15.24 252.73)
 		(end 165.1 281.94)
 		(stroke
@@ -7807,6 +7819,16 @@
 			)
 		)
 		(uuid "b685cf06-be23-4c40-abab-f6f5fb1ea569")
+	)
+	(text "Buttons"
+		(exclude_from_sim no)
+		(at 205.232 168.402 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "c12213b9-ca8e-4d62-a9c5-24db03470d36")
 	)
 	(text "Crystal"
 		(exclude_from_sim no)
@@ -7969,6 +7991,12 @@
 		(uuid "34a00a8c-d957-4bbe-bc9e-2e444a4f3092")
 	)
 	(junction
+		(at 222.25 201.93)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "35678bfb-ef33-4bbb-a2ae-0f3e048c7d73")
+	)
+	(junction
 		(at 38.1 121.92)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -8119,6 +8147,12 @@
 		(uuid "9df34b3a-fa14-49cc-9897-66a165ad5c0a")
 	)
 	(junction
+		(at 222.25 213.36)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "9f15e92c-175f-400f-aed7-565f064a7ac3")
+	)
+	(junction
 		(at 107.95 160.02)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -8159,6 +8193,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "b66b9933-1f61-46e6-bb98-25316c97854b")
+	)
+	(junction
+		(at 222.25 190.5)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "bf713ad1-2550-4c0e-9d24-105613803bd6")
 	)
 	(junction
 		(at 129.54 208.28)
@@ -9158,6 +9198,16 @@
 	)
 	(wire
 		(pts
+			(xy 222.25 190.5) (xy 222.25 201.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "696bb3fd-9028-41c2-ae59-05d8ebbb0aa9")
+	)
+	(wire
+		(pts
 			(xy 165.1 215.9) (xy 172.72 215.9)
 		)
 		(stroke
@@ -9458,6 +9508,16 @@
 	)
 	(wire
 		(pts
+			(xy 222.25 215.9) (xy 222.25 213.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "95744b26-c66d-46d1-8d02-5df5df499a9b")
+	)
+	(wire
+		(pts
 			(xy 50.8 262.89) (xy 50.8 264.16)
 		)
 		(stroke
@@ -9625,6 +9685,16 @@
 			(type default)
 		)
 		(uuid "b1ff3cba-30be-44ec-87c8-2112a0a94e43")
+	)
+	(wire
+		(pts
+			(xy 222.25 201.93) (xy 222.25 213.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b25207e1-8bc6-446c-b61c-336fe9b01835")
 	)
 	(wire
 		(pts
@@ -10105,6 +10175,16 @@
 			(type default)
 		)
 		(uuid "ea77be68-11e7-4661-87e0-4b0496a92629")
+	)
+	(wire
+		(pts
+			(xy 222.25 179.07) (xy 222.25 190.5)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "eabf1666-6167-4792-a277-b49c56c4e838")
 	)
 	(wire
 		(pts
@@ -10674,6 +10754,30 @@
 			)
 		)
 	)
+	(global_label "LEFT"
+		(shape bidirectional)
+		(at 212.09 201.93 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "3f4257bc-8e21-4825-acec-433a0d96ea4e")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 203.7602 201.93 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
 	(global_label "E-INK_BUSY"
 		(shape bidirectional)
 		(at 378.46 196.85 180)
@@ -10687,6 +10791,30 @@
 		(uuid "3feeef51-6523-4763-9c53-3809a2ca3ccf")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 362.5706 196.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
+	(global_label "DOWN"
+		(shape bidirectional)
+		(at 212.09 190.5 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "4283e846-b833-4c3d-98c5-27adc21fbe09")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 202.6111 190.5 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -10951,6 +11079,30 @@
 		(uuid "64f5c942-688b-4cfe-95f9-b20f693cea56")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 16.5259 151.13 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
+	(global_label "UP"
+		(shape bidirectional)
+		(at 212.09 179.07 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "687d6c54-6a79-46a0-aa8e-e139fb98f774")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 205.393 179.07 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -11487,6 +11639,30 @@
 					(size 1.27 1.27)
 				)
 				(justify left)
+			)
+		)
+	)
+	(global_label "RIGHT"
+		(shape bidirectional)
+		(at 212.09 213.36 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "9db0d4b9-a0b5-4a77-80e3-3ae5836f31f8")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 202.5506 213.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 			)
 		)
 	)
@@ -14677,7 +14853,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Button_Switch_THT:SW_PUSH-12mm_Wuerth-430476085716"
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm"
 			(at 172.72 240.03 0)
 			(hide yes)
 			(show_name no)
@@ -15120,6 +15296,86 @@
 			(project "UHBadge"
 				(path "/80dd4dc2-e1a5-4f20-a05b-f29ff7612afe"
 					(reference "C13")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Switch:SW_Push")
+		(at 217.17 190.5 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4ef1aea4-3ce1-483e-9e3d-ffcf2fea0704")
+		(property "Reference" "SW4"
+			(at 217.17 182.88 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Down"
+			(at 217.17 185.42 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm"
+			(at 217.17 185.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 217.17 185.42 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Push button switch, generic, two pins"
+			(at 217.17 190.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "4ccf9460-d87b-41e5-be52-005f4c3a256d")
+		)
+		(pin "2"
+			(uuid "bbb531fc-de05-4fb6-976d-dfc88e9a1f7f")
+		)
+		(instances
+			(project "UHBadge"
+				(path "/80dd4dc2-e1a5-4f20-a05b-f29ff7612afe"
+					(reference "SW4")
 					(unit 1)
 				)
 			)
@@ -16270,6 +16526,86 @@
 		)
 	)
 	(symbol
+		(lib_id "Switch:SW_Push")
+		(at 217.17 179.07 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "5f384d7e-4c7f-47f9-9e2b-89f54a50bc9b")
+		(property "Reference" "SW3"
+			(at 217.17 171.45 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Up"
+			(at 217.17 173.99 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm"
+			(at 217.17 173.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 217.17 173.99 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Push button switch, generic, two pins"
+			(at 217.17 179.07 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "8f7e56e7-8509-4a9f-9ba3-d2e72172dfca")
+		)
+		(pin "2"
+			(uuid "9b9e9e06-7904-42c2-bb9c-1ed33641ea8b")
+		)
+		(instances
+			(project "UHBadge"
+				(path "/80dd4dc2-e1a5-4f20-a05b-f29ff7612afe"
+					(reference "SW3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 139.7 267.97 0)
 		(unit 1)
@@ -17205,6 +17541,86 @@
 		)
 	)
 	(symbol
+		(lib_id "Switch:SW_Push")
+		(at 217.17 213.36 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "6e1971a0-2c7b-4df5-afd8-71ad0da24f00")
+		(property "Reference" "SW6"
+			(at 217.17 205.74 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Right"
+			(at 217.17 208.28 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm"
+			(at 217.17 208.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 217.17 208.28 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Push button switch, generic, two pins"
+			(at 217.17 213.36 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "81aa0790-0b78-4638-ab1c-9933ece12fea")
+		)
+		(pin "2"
+			(uuid "d5eb7baa-33d0-4633-acc3-9c325a65ff40")
+		)
+		(instances
+			(project "UHBadge"
+				(path "/80dd4dc2-e1a5-4f20-a05b-f29ff7612afe"
+					(reference "SW6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 107.95 165.1 0)
 		(unit 1)
@@ -17756,6 +18172,86 @@
 			(project "UHBadge"
 				(path "/80dd4dc2-e1a5-4f20-a05b-f29ff7612afe"
 					(reference "#PWR050")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Switch:SW_Push")
+		(at 217.17 201.93 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7532902b-5a83-4701-8fe0-7eba17cc21f2")
+		(property "Reference" "SW5"
+			(at 217.17 194.31 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "Left"
+			(at 217.17 196.85 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm"
+			(at 217.17 196.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 217.17 196.85 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Push button switch, generic, two pins"
+			(at 217.17 201.93 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "a3fcf7d9-96c8-43d3-87aa-d61808afedbf")
+		)
+		(pin "2"
+			(uuid "13e9b5fd-c6ff-4ed0-9418-193bd7bf14b4")
+		)
+		(instances
+			(project "UHBadge"
+				(path "/80dd4dc2-e1a5-4f20-a05b-f29ff7612afe"
+					(reference "SW5")
 					(unit 1)
 				)
 			)
@@ -18608,7 +19104,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Button_Switch_THT:SW_PUSH-12mm_Wuerth-430476085716"
+		(property "Footprint" "Button_Switch_THT:SW_PUSH_6mm"
 			(at 205.74 232.41 0)
 			(hide yes)
 			(show_name no)
@@ -22486,6 +22982,84 @@
 			(project "UHBadge"
 				(path "/80dd4dc2-e1a5-4f20-a05b-f29ff7612afe"
 					(reference "#PWR04")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 222.25 215.9 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e3b2c265-6d3c-431a-9e0d-8515592ee66f")
+		(property "Reference" "#PWR055"
+			(at 222.25 222.25 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "GND"
+			(at 222.25 220.98 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 222.25 215.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 222.25 215.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 222.25 215.9 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "1"
+			(uuid "73bf44a8-e0b1-44a9-b00b-ee00f05e991e")
+		)
+		(instances
+			(project "UHBadge"
+				(path "/80dd4dc2-e1a5-4f20-a05b-f29ff7612afe"
+					(reference "#PWR055")
 					(unit 1)
 				)
 			)
