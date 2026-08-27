@@ -10370,6 +10370,30 @@
 			)
 		)
 	)
+	(global_label "LEFT"
+		(shape bidirectional)
+		(at 386.08 80.01 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "09f1bd2b-7c89-48a6-8dc5-4430485d485b")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 394.4098 80.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
 	(global_label "E-INK_VGL"
 		(shape bidirectional)
 		(at 375.92 233.68 270)
@@ -10514,6 +10538,30 @@
 			)
 		)
 	)
+	(global_label "RIGHT"
+		(shape bidirectional)
+		(at 386.08 82.55 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "1d8a16f5-17f4-4229-839f-1ec3dcc9100f")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 395.6194 82.55 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
 	(global_label "GPIO3"
 		(shape bidirectional)
 		(at 248.92 189.23 180)
@@ -10559,6 +10607,30 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+			)
+		)
+	)
+	(global_label "DOWN"
+		(shape bidirectional)
+		(at 386.08 77.47 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "22f179a9-5af6-4b4a-b038-14ada0825b09")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 395.5589 77.47 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 			)
 		)
 	)
@@ -11207,6 +11279,30 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+			)
+		)
+	)
+	(global_label "UP"
+		(shape bidirectional)
+		(at 386.08 74.93 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "7c43d1ca-ec56-49bc-adfd-ec53cee14b2f")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 392.777 74.93 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 			)
 		)
 	)
