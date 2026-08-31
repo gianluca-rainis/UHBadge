@@ -54,7 +54,7 @@
           "border_hatch_pitch": 0.5,
           "corner_radius": 0.0,
           "corner_smoothing": 0,
-          "fill_mode": 0,
+          "fill_mode": 1,
           "hatch_gap": 1.5,
           "hatch_orientation": 0.0,
           "hatch_smoothing_level": 0,
@@ -648,7 +648,7 @@
         "uuid": "80dd4dc2-e1a5-4f20-a05b-f29ff7612afe"
       }
     ],
-    "used_designators": "L1-3,H1-2,BT1,R1-18,P1,U1-6,C1-35,SW1-6,Y1-2,#PWR1-55,D1-8,Q1,J1-2",
+    "used_designators": "L1-3,H1-2,BT1,R1-18,P1,U1-6,C1-35,SW1-6,Y1-2,#PWR1-56,D1-8,Q1,J1-2",
     "variants": []
   },
   "sheets": [
