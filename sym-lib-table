@@ -1,0 +1,4 @@
+(sym_lib_table
+	(version 7)
+	(lib (name "RPI_WIFI") (type "KiCad") (uri "/Users/gianlucarainis/Downloads/kicad 2/RPI_RMC20452T.kicad_sym") (options "") (descr ""))
+)
