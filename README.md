@@ -7,6 +7,8 @@
 
 Universal Hacker Badge - The ultimate badge for hackers.
 
+![UHBadge PCB Image](/images/uhbadge.jpg)
+
 ## Author
 The author of the whole project is: 
 **Gianluca Rainis** - [gianluca-rainis](https://github.com/gianluca-rainis) on GitHub.

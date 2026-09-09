@@ -12,13 +12,17 @@ void setup() {
     gpio_set_dir(GPIO_SD_CMD, GPIO_OUT);
 
     gpio_init(GPIO_UP);
-    gpio_set_dir(GPIO_UP, GPIO_OUT);
+    gpio_set_dir(GPIO_UP, GPIO_IN);
+    gpio_pull_up(GPIO_UP);
     gpio_init(GPIO_DOWN);
-    gpio_set_dir(GPIO_DOWN, GPIO_OUT);
+    gpio_set_dir(GPIO_DOWN, GPIO_IN);
+    gpio_pull_up(GPIO_DOWN);
     gpio_init(GPIO_LEFT);
-    gpio_set_dir(GPIO_LEFT, GPIO_OUT);
+    gpio_set_dir(GPIO_LEFT, GPIO_IN);
+    gpio_pull_up(GPIO_LEFT);
     gpio_init(GPIO_RIGHT);
-    gpio_set_dir(GPIO_RIGHT, GPIO_OUT);
+    gpio_set_dir(GPIO_RIGHT, GPIO_IN);
+    gpio_pull_up(GPIO_RIGHT);
 
     gpio_init(GPIO_NFC_SDA);
     gpio_set_dir(GPIO_NFC_SDA, GPIO_IN);
