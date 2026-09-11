@@ -5,9 +5,11 @@
 ![GitHub Repo stars](https://img.shields.io/github/stars/gianluca-rainis/UHBadge)
 ![GitHub watchers](https://img.shields.io/github/watchers/gianluca-rainis/UHBadge)
 
+![UHBadge Logo](/images/UHBadge.png)
+
 Universal Hacker Badge - The ultimate badge for hackers.
 
-![UHBadge PCB Image](/images/uhbadge.jpg)
+![UHBadge PCB Image](/images/UHBadgePCB.png)
 
 ## Author
 The author of the whole project is: 
@@ -23,3 +25,14 @@ Licensed under the [MIT License](LICENSE-MIT.md)
 ## Development Tools
 - **PCB Design:** KiCad
 - **Documentation and code:** Visual Studio Code
+
+## Hardware
+### Schematic
+![UHBadge Schematics](/images/UHBadgeSchematics.png)
+
+### PCB
+![UHBadge PCB Image](/images/UHBadgePCB.png)
+
+### 3D Render
+![UHBadge Render Front](/images/UHBadge3DFront.png)
+![UHBadge Render Back](/images/UHBadge3DBack.png)
