@@ -17,16 +17,6 @@ void ui_init() {
             open_nfc
         },
         {
-            "Infrared",
-            icon_ir,
-            open_ir
-        },
-        {
-            "Audio",
-            icon_audio,
-            open_audio
-        },
-        {
             "Settings",
             icon_settings,
             open_settings
