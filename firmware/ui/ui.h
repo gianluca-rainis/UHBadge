@@ -1,8 +1,9 @@
+#include "tools/buttons.h"
+#include "framebuffer.h"
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdint.h>
-
-#include "tools/buttons.h"
 
 #ifndef UHBADGE_UI
     #define UHBADGE_UI
@@ -18,6 +19,17 @@
         void (*open)();
     } App;
 
-    void ui_init();
-    void ui_draw();
+    typedef enum {
+        SCREEN_BADGE,               // Main badge screen
+        SCREEN_CONTACT,             // Contact information screen
+        SCREEN_SETTINGS,            // Settings screen
+        SCREEN_GITHUB,              // GitHub profile screen - powered by GitHub API
+        SCREEN_GITHUB_STATS,        // GitHub statistics screen - powered by GitHub API
+        SCREEN_GITHUB_TROPHIES,     // GitHub trophies screen - powered by GitHub API
+        SCREEN_APPS_MENU            // Applications menu screen
+    } ScreenId;
+
+    void uiInit();
+    void uiUpdate();
+    void uiGoToScreen(ScreenId screen);
 #endif
