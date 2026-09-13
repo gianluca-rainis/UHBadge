@@ -6,7 +6,7 @@
 #ifndef UHBADGE_EINK
     #define UHBADGE_EINK
 
-    #define EINK_HEIGHT  296
+    #define EINK_HEIGHT 296
     #define EINK_WIDTH 128
     #define EINK_BUF_SIZE ((EINK_WIDTH * EINK_HEIGHT) / 8)
 
@@ -17,6 +17,7 @@
     void einkClear();
     void einkWriteFramebuffer(const uint8_t* buf);
     void einkUpdate(bool partial);
+    void einkSyncOldRam(const uint8_t* buf);
     void einkSleep();
     void einkWaitBusy();
 #endif

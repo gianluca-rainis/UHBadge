@@ -10,6 +10,8 @@ pico_sdk_init()
 add_executable(UHBadge
 	main.c
 	firmware.c
+	framebuffer.c
+	eink.c
 	ui.c
 	buttons.c
 )

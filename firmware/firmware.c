@@ -1,4 +1,9 @@
 #include "firmware.h"
+#include "ui/eink.h"
+#include "ui/ui.h"
+#include "hardware/gpio.h"
+#include "pico/stdlib.h"
+
 #include <stdlib.h>
 
 /* 
@@ -84,11 +89,18 @@ void setup() {
         * gpio_init(GPIO_UNCONNECTED_ADC2);
         * gpio_set_dir(GPIO_UNCONNECTED_ADC2, GPIO_IN);
     */
+
+    einkInit();
+    einkClear();
+
+    uiInit();
 }
 
 /* 
     This function is runned in a loop after the setup function.
 */
 void loop() {
+    uiUpdate();
 
+    sleep_ms(20);
 }
