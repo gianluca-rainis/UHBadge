@@ -33,3 +33,7 @@ fp-info-cache
 # Custom
 .DS_Store
 firmware/pico-sdk
+
+firmware/build/*
+
+!firmware/build/*.uf2

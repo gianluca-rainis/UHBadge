@@ -16,6 +16,11 @@ int selected = 0;
 int scroll = 0;
 int menuTotalElements = 0;
 
+static void openWifi();
+static void openBluetooth();
+static void openNfc();
+static void openSettings();
+
 static App apps[] = {
     { "WiFi", NULL, openWifi },
     { "Bluetooth", NULL, openBluetooth },
