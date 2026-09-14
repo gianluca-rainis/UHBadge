@@ -33,6 +33,17 @@ Every circuit and every design decision are the original work of the author.
 - **PCB Design:** KiCad
 - **Documentation and code:** Visual Studio Code
 
+## Build the firmware
+From the directory of the repo:
+```bash
+cd firmware/build
+
+cmake ..
+make -j$(sysctl -n hw.ncpu)
+```
+
+You'll find the `UHBadge.uf2` file in the `firmware/build` directory.
+
 ## Hardware
 ### Schematic
 ![UHBadge Schematics](/images/UHBadgeSchematics.png)
