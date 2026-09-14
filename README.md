@@ -22,6 +22,13 @@ Licensed under [CERN-OHL-S v2.0](LICENSE-CERN-OHL-S.md)
 ### Software, firmware and documentation:
 Licensed under the [MIT License](LICENSE-MIT.md)
 
+## AI Disclaimer
+**No AI was used in the conception, design, or engineering of the hardware.**
+Every circuit and every design decision are the original work of the author.
+
+*AI tools* were used solely as a **writing assistant** for parts of the firmware, to help write technical drivers and low-level functions.
+**All content has been reviewed, verified, and edited by the author.**
+
 ## Development Tools
 - **PCB Design:** KiCad
 - **Documentation and code:** Visual Studio Code
