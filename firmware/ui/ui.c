@@ -210,7 +210,6 @@ static void drawGithubTrophiesScreen() {
     fbDrawText(8, 16, "TROPHIES", FB_BLACK, 0);
 }
 
-
 static void drawAppsMenuScreen() {
     int cellW = EINK_WIDTH / MENU_COLS - 2;
     int cellH = 48;

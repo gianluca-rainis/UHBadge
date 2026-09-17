@@ -22,6 +22,7 @@ add_executable(UHBadge
 	tools/nfc.c
 	tools/storage.c
 	tools/wifi.c
+	tools/ble.c
 	tools/sd.c
 	tools/diskio.c
 	lib/fatfs/ff.c
@@ -39,6 +40,8 @@ target_link_libraries(UHBadge
     hardware_gpio
 	hardware_i2c
 	pico_cyw43_arch_lwip_poll
+	pico_btstack_ble
+    pico_btstack_cyw43
 )
 
 pico_add_extra_outputs(UHBadge)

@@ -166,7 +166,6 @@ void einkSleep() {
     einkSendData(0x01);
 }
 
-
 void einkInit() {
     spi_init(EINK_SPI_PORT, EINK_SPI_BAUDRATE);
     gpio_set_function(GPIO_E_INK_SCL, GPIO_FUNC_SPI);

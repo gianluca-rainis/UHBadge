@@ -24,9 +24,7 @@ bool wifiInit() {
 bool wifiConnect(const char* ssid, const char* password) {
     currentState = WIFI_STATE_CONNECTING;
 
-    int result = cyw43_arch_wifi_connect_timeout_ms(
-        ssid, password, CYW43_AUTH_WPA2_AES_PSK, WIFI_CONNECT_TIMEOUT_MS
-    );
+    int result = cyw43_arch_wifi_connect_timeout_ms(ssid, password, CYW43_AUTH_WPA2_AES_PSK, WIFI_CONNECT_TIMEOUT_MS);
 
     currentState = (result == 0) ? WIFI_STATE_CONNECTED : WIFI_STATE_FAILED;
 
