@@ -1,7 +1,7 @@
 #include "ble.h"
-#include "btstack_config.h"
 #include "pico-sdk/src/rp2_common/pico_cyw43_arch/include/pico/cyw43_arch.h"
 
+#include <btstack.h>
 #include <string.h>
 
 #define UHBADGE_BLE_COMPANY_ID 0xFFFF

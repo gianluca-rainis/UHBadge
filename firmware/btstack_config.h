@@ -9,9 +9,15 @@
     #define HAVE_EMBEDDED_TIME_MS
     #define HCI_ACL_PAYLOAD_SIZE 256
 
-    #define ENABLE_BLE
+    #define ENABLE_PRINTF_HEXDUMP
+
+    #define HCI_OUTGOING_PRE_BUFFER_SIZE 4
+    #define HCI_ACL_CHUNK_SIZE_ALIGNMENT 4
+
     #define ENABLE_LE_PERIPHERAL // advertising
     #define ENABLE_LE_CENTRAL // scanning
+
+    #define MAX_ATT_DB_SIZE 64 // 64 bytes for GATT database
 
     #define MAX_NR_HCI_CONNECTIONS 1
     #define MAX_NR_SM_LOOKUP_ENTRIES 3
