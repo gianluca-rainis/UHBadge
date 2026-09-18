@@ -12,6 +12,9 @@
     #define MENU_COLS 2
     #define MENU_VISIBLE (MENU_ROWS * MENU_COLS)
 
+    #define BADGE_IMAGE_DIAMETER 48
+    #define BADGE_IMAGE_BUF_SIZE ((BADGE_IMAGE_DIAMETER * ((BADGE_IMAGE_DIAMETER + 7) / 8)) + 2)
+
     typedef struct {
         const char* name;
         const uint8_t* icon;

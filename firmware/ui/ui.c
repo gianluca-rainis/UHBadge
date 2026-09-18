@@ -1,5 +1,7 @@
 #include "ui.h"
 #include "eink.h"
+#include "../tools/storage.h"
+#include "../tools/badgeData.h"
 
 #include <string.h>
 
@@ -184,9 +186,67 @@ static void handleAppsMenuNavigation(bool upEdge, bool downEdge, bool leftEdge, 
 }
 
 static void drawBadgeScreen() {
-    fbDrawRect(4, 4, EINK_WIDTH - 8, EINK_HEIGHT - 8, false, FB_BLACK);
-    fbDrawText(12, 16, "NAME", FB_BLACK, EINK_WIDTH - 24);
-    fbDrawText(12, 32, "UHBADGE", FB_BLACK, 0);
+    BadgeData badge;
+    badgeDataLoad(&badge);
+
+    int centerX = EINK_WIDTH / 2;
+
+    if (!badge.found) {
+        fbDrawText(4, 8, "TOP LEFT", FB_BLACK, 0);
+        fbDrawText(EINK_WIDTH - 4 - 8 * (FB_FONT_WIDTH + 1), 8, "TOP RIGHT", FB_BLACK, 0);
+        fbDrawRect(centerX - BADGE_IMAGE_DIAMETER / 2, 24, BADGE_IMAGE_DIAMETER, BADGE_IMAGE_DIAMETER, false, FB_BLACK);
+        fbDrawText(4, 90, "FIRST NAME", FB_BLACK, 0);
+        fbDrawText(4, 102, "LAST NAME", FB_BLACK, 0);
+        fbDrawText(4, 130, "MIDDLE TOP", FB_BLACK, 0);
+        fbDrawText(4, 142, "MIDDLE BOTTOM", FB_BLACK, 0);
+        fbDrawText(4, EINK_HEIGHT - 16, "BOTTOM", FB_BLACK, 0);
+
+        return;
+    }
+
+    if (badge.topLeft[0] != '\0') {
+        fbDrawText(4, 8, badge.topLeft, FB_BLACK, 0);
+    }
+
+    if (badge.topRight[0] != '\0') {
+        int textWidth = strlen(badge.topRight) * (FB_FONT_WIDTH + 1);
+
+        fbDrawText(EINK_WIDTH - 4 - textWidth, 8, badge.topRight, FB_BLACK, 0);
+    }
+
+    if (badge.imagePath[0] != '\0') {
+        uint8_t imageBuf[BADGE_IMAGE_BUF_SIZE];
+        size_t bytesRead = 0;
+
+        if (storageReadBinaryFile(badge.imagePath, imageBuf, sizeof(imageBuf), &bytesRead) && bytesRead > 2) {
+            uint8_t imgWidth = imageBuf[0];
+            uint8_t imgHeight = imageBuf[1];
+
+            if (imgWidth == BADGE_IMAGE_DIAMETER && imgHeight == BADGE_IMAGE_DIAMETER) {
+                fbDrawBitmapCircular(centerX, 24 + BADGE_IMAGE_DIAMETER / 2, BADGE_IMAGE_DIAMETER, &imageBuf[2], FB_BLACK);
+            }
+        }
+    }
+
+    if (badge.firstName[0] != '\0') {
+        fbDrawText(4, 24 + BADGE_IMAGE_DIAMETER + 8, badge.firstName, FB_BLACK, 0);
+    }
+
+    if (badge.lastName[0] != '\0') {
+        fbDrawText(4, 24 + BADGE_IMAGE_DIAMETER + 20, badge.lastName, FB_BLACK, 0);
+    }
+
+    if (badge.middleTop[0] != '\0') {
+        fbDrawText(4, EINK_HEIGHT - 60, badge.middleTop, FB_BLACK, EINK_WIDTH - 8);
+    }
+
+    if (badge.middleBottom[0] != '\0') {
+        fbDrawText(4, EINK_HEIGHT - 44, badge.middleBottom, FB_BLACK, EINK_WIDTH - 8);
+    }
+
+    if (badge.bottom[0] != '\0') {
+        fbDrawText(4, EINK_HEIGHT - 16, badge.bottom, FB_BLACK, EINK_WIDTH - 8);
+    }
 }
 
 static void drawContactScreen() {

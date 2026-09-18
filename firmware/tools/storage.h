@@ -17,5 +17,6 @@
     bool storageReadTextFile(const char* path, char* buf, size_t bufSize);
     bool storageWriteTextFile(const char* path, const char* text);
     int storageListDir(const char* path, StorageEntry* out);
+    bool storageReadBinaryFile(const char* path, uint8_t* buf, size_t bufSize, size_t* bytesRead);
     bool storageExists(const char* path);
 #endif

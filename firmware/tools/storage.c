@@ -89,6 +89,30 @@ int storageListDir(const char* path, StorageEntry* out) {
     return count;
 }
 
+bool storageReadBinaryFile(const char* path, uint8_t* buf, size_t bufSize, size_t* bytesRead) {
+    if (!mounted) {
+        return false;
+    }
+
+    FIL file;
+
+    if (f_open(&file, path, FA_READ) != FR_OK) {
+        return false;
+    }
+
+    UINT read = 0;
+    FRESULT res = f_read(&file, buf, bufSize, &read);
+    f_close(&file);
+
+    if (res != FR_OK) {
+        return false;
+    }
+
+    *bytesRead = read;
+
+    return true;
+}
+
 bool storageExists(const char* path) {
     if (!mounted) {
         return false;

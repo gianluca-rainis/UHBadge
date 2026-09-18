@@ -128,3 +128,26 @@ void fbDrawBitmap(int x, int y, int w, int h, const uint8_t* bitmap, int color) 
         }
     }
 }
+
+void fbDrawBitmapCircular(int cx, int cy, int diameter, const uint8_t* bitmap, int color) {
+    int radius = diameter / 2;
+    int rowBytes = (diameter + 7) / 8;
+
+    for (int row = 0; row < diameter; row++) {
+        for (int col = 0; col < diameter; col++) {
+            int dx = col - radius;
+            int dy = row - radius;
+
+            if (dx * dx + dy * dy > radius * radius) {
+                continue;
+            }
+
+            int byteIndex = row * rowBytes + (col / 8);
+            uint8_t mask = 0x80 >> (col % 8);
+
+            if (bitmap[byteIndex] & mask) {
+                fbSetPixel(cx - radius + col, cy - radius + row, color);
+            }
+        }
+    }
+}

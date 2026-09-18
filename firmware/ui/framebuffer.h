@@ -24,4 +24,5 @@
     int fbDrawChar(int x, int y, char c, int color);
     void fbDrawText(int x, int y, const char* text, int color, int wrap_width);
     void fbDrawBitmap(int x, int y, int w, int h, const uint8_t* bitmap, int color);
+    void fbDrawBitmapCircular(int cx, int cy, int diameter, const uint8_t* bitmap, int color);
 #endif
