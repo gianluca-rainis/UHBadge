@@ -26,7 +26,7 @@ Licensed under the [MIT License](LICENSE-MIT.md)
 **No AI was used in the conception, design, or engineering of the hardware.**
 Every circuit and every design decision are the original work of the author.
 
-*AI tools* were used solely as a **writing assistant** for parts of the firmware, to help write technical drivers and low-level functions.
+*AI tools* were used as **writing assistants** for parts of the firmware, to help write technical drivers and low-level functions.
 **All content has been reviewed, verified, and edited by the author.**
 
 ## Development Tools
