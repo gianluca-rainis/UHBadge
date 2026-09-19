@@ -1,0 +1,8 @@
+{
+    "qrcode": "https://yoursite.com",
+    "links": [
+        { "label": "Website", "value": "yoursite.com" },
+        { "label": "GitHub", "value": "github.com/your-github" },
+        { "label": "Email", "value": "email@email.com" }
+    ]
+}

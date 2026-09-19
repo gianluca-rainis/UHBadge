@@ -6,7 +6,7 @@
 
     #define BADGE_FIELD_MAX_LEN 40
     #define BADGE_IMAGE_PATH_MAX_LEN 128
-    #define BADGE_DATA_FOLDER "/UHBadge-main"
+    #define BADGE_DATA_PATH "/UHBadge-main/badge.json"
 
     typedef struct {
         char topLeft[BADGE_FIELD_MAX_LEN];

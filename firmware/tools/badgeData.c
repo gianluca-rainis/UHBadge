@@ -64,36 +64,12 @@ void badgeDataLoad(BadgeData* out) {
     memset(out, 0, sizeof(BadgeData));
     out->found = false;
 
-    StorageEntry entries[STORAGE_MAX_ENTRIES];
-    int count = storageListDir(BADGE_DATA_FOLDER, entries);
-
-    for (int i = 0; i < count; i++) {
-        if (entries[i].isDirectory) {
-            continue;
-        }
-
-        size_t nameLen = strlen(entries[i].name);
-
-        if (nameLen < 5) {
-            continue;
-        }
-
-        if (strcmp(entries[i].name + nameLen - 5, ".json") != 0) {
-            continue;
-        }
-
-        char fullPath[BADGE_IMAGE_PATH_MAX_LEN];
-        snprintf(fullPath, sizeof(fullPath), "%s/%s", BADGE_DATA_FOLDER, entries[i].name);
-
-        static char jsonBuf[BADGE_JSON_MAX_LEN];
-        
-        if (!storageReadTextFile(fullPath, jsonBuf, sizeof(jsonBuf))) {
-            continue;
-        }
-
+    static char jsonBuf[BADGE_JSON_MAX_LEN];
+    
+    if (storageReadTextFile(BADGE_DATA_PATH, jsonBuf, sizeof(jsonBuf))) {
         parseBadgeJson(jsonBuf, out);
         out->found = true;
-        
-        return;
     }
+    
+    return;
 }

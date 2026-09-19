@@ -2,8 +2,12 @@
 #include "eink.h"
 #include "../tools/storage.h"
 #include "../tools/badgeData.h"
+#include "../tools/contactsData.h"
+#include "../tools/qrRender.h"
+#include "../tools/nfc.h"
 
 #include <string.h>
+#include <stdio.h>
 
 static ScreenId currentScreen = SCREEN_BADGE;
 static bool needsRedraw = true;
@@ -17,6 +21,10 @@ static bool prevRight = false;
 int selected = 0;
 int scroll = 0;
 int menuTotalElements = 0;
+
+static int contactSelectedLink = 0;
+static int contactVisibleLinkCount = 0;
+static bool contactIsTransmitting = false;
 
 static void openWifi();
 static void openBluetooth();
@@ -51,6 +59,31 @@ void uiGoToScreen(ScreenId screen) {
     needsRedraw = true;
 }
 
+static void truncateForLine(const char* text, char* out, size_t outSize, int maxChars) {
+    size_t len = strlen(text);
+
+    if ((int)len <= maxChars) {
+        strncpy(out, text, outSize - 1);
+        out[outSize - 1] = '\0';
+
+        return;
+    }
+
+    int keep = maxChars - 3;
+
+    if (keep < 1) {
+        keep = 1;
+    }
+
+    if ((size_t)keep >= outSize) {
+        keep = outSize - 1;
+    }
+
+    strncpy(out, text, keep);
+    out[keep] = '\0';
+    strncat(out, "...", outSize - strlen(out) - 1);
+}
+
 static void readButtonEdges(bool* upEdge, bool* downEdge, bool* leftEdge, bool* rightEdge) {
     bool up = buttonUpPressed();
     bool down = buttonDownPressed();
@@ -76,6 +109,9 @@ static void handleCrossNavigation(bool upEdge, bool downEdge, bool leftEdge, boo
             }
 
             if (downEdge) {
+                contactSelectedLink = 0;
+                contactIsTransmitting = false;
+                
                 uiGoToScreen(SCREEN_CONTACT);
             }
 
@@ -85,12 +121,6 @@ static void handleCrossNavigation(bool upEdge, bool downEdge, bool leftEdge, boo
 
             if (rightEdge) {
                 uiGoToScreen(SCREEN_GITHUB);
-            }
-            break;
-
-        case SCREEN_CONTACT:
-            if (upEdge) {
-                uiGoToScreen(SCREEN_BADGE);
             }
             break;
 
@@ -185,6 +215,50 @@ static void handleAppsMenuNavigation(bool upEdge, bool downEdge, bool leftEdge, 
     }
 }
 
+static void handleContactsNavigation(bool upEdge, bool downEdge, bool leftEdge, bool rightEdge) {
+    if (upEdge) {
+        if (contactSelectedLink == 0) {
+            nfcClear();
+            contactIsTransmitting = false;
+
+            uiGoToScreen(SCREEN_BADGE);
+            
+            return;
+        }
+
+        contactSelectedLink--;
+        contactIsTransmitting = false;
+        needsRedraw = true;
+    }
+
+    if (downEdge) {
+        if (contactSelectedLink < contactVisibleLinkCount - 1) {
+            contactSelectedLink++;
+            contactIsTransmitting = false;
+            needsRedraw = true;
+        }
+    }
+
+    if (rightEdge) {
+        ContactsData contacts;
+        contactsDataLoad(&contacts);
+
+        if (contactSelectedLink < contacts.linkCount) {
+            nfcWriteUri(contacts.links[contactSelectedLink].value);
+            contactIsTransmitting = true;
+
+            needsRedraw = true;
+        }
+    }
+
+    if (leftEdge) {
+        nfcClear();
+        contactIsTransmitting = false;
+
+        needsRedraw = true;
+    }
+}
+
 static void drawBadgeScreen() {
     BadgeData badge;
     badgeDataLoad(&badge);
@@ -250,7 +324,73 @@ static void drawBadgeScreen() {
 }
 
 static void drawContactScreen() {
-    fbDrawText(8, 16, "CONTACT INFO", FB_BLACK, 0);
+    ContactsData contacts;
+    contactsDataLoad(&contacts);
+
+    if (!contacts.found || contacts.linkCount == 0) {
+        fbDrawText(8, 16, "CONTACT INFO", FB_BLACK, 0);
+        fbDrawText(8, 32, "NO LINKS FOUND", FB_BLACK, EINK_WIDTH - 16);
+
+        contactVisibleLinkCount = 0;
+
+        return;
+    }
+
+    int linksStartY = 8;
+
+    if (contacts.hasQrcode) {
+        int qrHeight = qrRenderDraw(contacts.qrcodeData, 4);
+
+        if (qrHeight > 0) {
+            linksStartY = 4 + qrHeight + 8;
+        }
+        else {
+            fbDrawText(8, 4, "QR: LINK TOO LONG", FB_BLACK, EINK_WIDTH - 16);
+            linksStartY = 20;
+        }
+    }
+
+    int availableHeight = EINK_HEIGHT - linksStartY - 4;
+    int maxVisibleLinks = availableHeight / CONTACTS_LINE_HEIGHT;
+
+    if (maxVisibleLinks > CONTACTS_MAX_LINKS) {
+        maxVisibleLinks = CONTACTS_MAX_LINKS;
+    }
+
+    int visibleCount = contacts.linkCount;
+
+    if (visibleCount > maxVisibleLinks) {
+        visibleCount = maxVisibleLinks;
+    }
+
+    contactVisibleLinkCount = visibleCount;
+
+    if (contactSelectedLink >= visibleCount) {
+        contactSelectedLink = visibleCount > 0 ? visibleCount - 1 : 0;
+    }
+
+    for (int i = 0; i < visibleCount; i++) {
+        int y = linksStartY + i * CONTACTS_LINE_HEIGHT;
+        bool isSelected = (i == contactSelectedLink);
+
+        char combined[CONTACTS_LABEL_MAX_LEN + CONTACTS_VALUE_MAX_LEN + 4];
+        snprintf(combined, sizeof(combined), "%s: %s", contacts.links[i].label, contacts.links[i].value);
+
+        char line[CONTACTS_MAX_LINE_CHARS + 4];
+        truncateForLine(combined, line, sizeof(line), CONTACTS_MAX_LINE_CHARS);
+
+        if (isSelected) {
+            fbDrawRect(0, y - 1, EINK_WIDTH, CONTACTS_LINE_HEIGHT, true, FB_BLACK);
+            fbDrawText(4, y, line, FB_WHITE, 0);
+
+            if (contactIsTransmitting) {
+                fbDrawText(EINK_WIDTH - 4 - 2 * (FB_FONT_WIDTH + 1), y, "TX", FB_WHITE, 0);
+            }
+        }
+        else {
+            fbDrawText(4, y, line, FB_BLACK, 0);
+        }
+    }
 }
 
 static void drawSettingsScreen() {
@@ -352,6 +492,9 @@ void uiUpdate() {
 
     if (currentScreen == SCREEN_APPS_MENU) {
         handleAppsMenuNavigation(upEdge, downEdge, leftEdge, rightEdge);
+    }
+    else if (currentScreen == SCREEN_CONTACT) {
+        handleContactsNavigation(upEdge, downEdge, leftEdge, rightEdge);
     }
     else {
         handleCrossNavigation(upEdge, downEdge, leftEdge, rightEdge);
