@@ -23,7 +23,7 @@ static bool findJsonStringField(const char* json, const char* key, char* out, si
         return false;
     }
 
-    const char* valueStart = strchr(colon, "\"");
+    const char* valueStart = strchr(colon, '"');
 
     if (valueStart == NULL) {
         return false;
@@ -31,7 +31,7 @@ static bool findJsonStringField(const char* json, const char* key, char* out, si
 
     valueStart++;
 
-    const char* valueEnd = strchr(valueStart, "\"");
+    const char* valueEnd = strchr(valueStart, '"');
 
     if (valueEnd == NULL) {
         return false;

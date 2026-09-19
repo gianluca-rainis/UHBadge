@@ -18,20 +18,25 @@ add_executable(UHBadge
 	ui/framebuffer.c
 	ui/eink.c
 	ui/ui.c
+	tools/badgeData.c
+	tools/ble.c
 	tools/buttons.c
+	tools/contactsData.c
+	tools/diskio.c
 	tools/nfc.c
+	tools/qrRender.c
+	tools/sd.c
 	tools/storage.c
 	tools/wifi.c
-	tools/ble.c
-	tools/sd.c
-	tools/diskio.c
 	lib/fatfs/ff.c
 	lib/fatfs/ffunicode.c
+	lib/qrCodeGen/qrcodegen.c
 )
 
 target_include_directories(UHBadge PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
 	${CMAKE_CURRENT_SOURCE_DIR}/lib/fatfs
+	${CMAKE_CURRENT_SOURCE_DIR}/lib/qrcodegen
 )
 
 target_link_libraries(UHBadge

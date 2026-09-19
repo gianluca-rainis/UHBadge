@@ -122,3 +122,7 @@ bool storageExists(const char* path) {
     
     return f_stat(path, &info) == FR_OK;
 }
+
+DWORD get_fattime(void) {
+    return ((DWORD)(2026 - 1980) << 25) | ((DWORD)1 << 21) | ((DWORD)1 << 16);
+}
