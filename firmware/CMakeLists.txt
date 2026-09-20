@@ -28,6 +28,7 @@ add_executable(UHBadge
 	tools/sd.c
 	tools/storage.c
 	tools/wifi.c
+	tools/wifiNetworks.c
 	lib/fatfs/ff.c
 	lib/fatfs/ffunicode.c
 	lib/qrCodeGen/qrcodegen.c

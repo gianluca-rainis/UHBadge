@@ -20,4 +20,6 @@
     bool bleStartScanning();
     void blePoll();
     int bleGetNearbyBadges(NearbyBadge* out);
+    bool bleIsEnabled();
+    void bleSetEnabled(bool enabled);
 #endif

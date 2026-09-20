@@ -10,6 +10,8 @@
 static btstack_packet_callback_registration_t hciEventCallbackRegistration;
 static NearbyBadge nearbyBadges[BLE_MAX_NEARBY_BADGES];
 static int nearbyBadgeCount = 0;
+static bool bleEnabledFlag = false;
+static char lastAdvertisedName[BLE_MAX_NAME_LEN] = "UHBadge";
 
 static uint8_t advData[31];
 static uint8_t advDataLen = 0;
@@ -153,6 +155,9 @@ bool bleInit() {
 }
 
 bool bleStartAdvertising(const char* badgeName) {
+    strncpy(lastAdvertisedName, badgeName, BLE_MAX_NAME_LEN - 1);
+    lastAdvertisedName[BLE_MAX_NAME_LEN - 1] = '\0';
+
     buildAdvertisingData(badgeName);
 
     uint16_t advIntervalMin = 0x0800;
@@ -185,4 +190,25 @@ int bleGetNearbyBadges(NearbyBadge* out) {
     memcpy(out, nearbyBadges, sizeof(NearbyBadge) * nearbyBadgeCount);
 
     return nearbyBadgeCount;
+}
+
+bool bleIsEnabled() {
+    return bleEnabledFlag;
+}
+
+void bleSetEnabled(bool enabled) {
+    if (enabled == bleEnabledFlag) {
+        return;
+    }
+
+    if (enabled) {
+        bleStartAdvertising(lastAdvertisedName);
+        bleStartScanning();
+    }
+    else {
+        gap_advertisements_enable(0);
+        gap_stop_scan();
+    }
+
+    bleEnabledFlag = enabled;
 }
