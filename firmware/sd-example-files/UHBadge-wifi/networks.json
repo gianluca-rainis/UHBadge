@@ -1,0 +1,6 @@
+{
+    "networks": [
+        { "ssid": "Network1", "password": "password1234" },
+        { "ssid": "OfficeNetwork", "password": "secretPassword" }
+    ]
+}

@@ -1,5 +1,5 @@
 #include "ble.h"
-#include "pico-sdk/src/rp2_common/pico_cyw43_arch/include/pico/cyw43_arch.h"
+#include "pico/cyw43_arch.h"
 
 #include <btstack.h>
 #include <string.h>

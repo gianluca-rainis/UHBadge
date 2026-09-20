@@ -7,6 +7,8 @@
     #define WIFI_SSID_MAX_LEN 64
     #define WIFI_PASSWORD_MAX_LEN 64
     #define WIFI_CONNECT_TIMEOUT_MS 15000
+    #define WIFI_SCAN_TIMEOUT_MS 10000
+    #define WIFI_SCAN_MAX_RESULTS 20
 
     typedef enum {
         WIFI_STATE_DISCONNECTED,
@@ -20,4 +22,7 @@
     bool wifiConnectFromStorage();
     WifiState wifiGetState();
     void wifiPoll();
+    bool wifiIsEnabled();
+    void wifiSetEnabled(bool enabled);
+    int wifiScanNetworks(char ssidsOut[][WIFI_SSID_MAX_LEN], int maxCount);
 #endif

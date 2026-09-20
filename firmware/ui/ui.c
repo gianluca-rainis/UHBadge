@@ -5,6 +5,9 @@
 #include "../tools/contactsData.h"
 #include "../tools/qrRender.h"
 #include "../tools/nfc.h"
+#include "../tools/wifi.h"
+#include "../tools/wifiNetworks.h"
+#include "../tools/ble.h"
 
 #include <string.h>
 #include <stdio.h>
@@ -25,6 +28,13 @@ int menuTotalElements = 0;
 static int contactSelectedLink = 0;
 static int contactVisibleLinkCount = 0;
 static bool contactIsTransmitting = false;
+
+static int settingsFocus = 0; // 0 = WiFi, 1 = Bluetooth
+static int settingsMode = 0; // 0 = toggle, 1 = Wifi network list
+static char scannedSsids[WIFI_SCAN_MAX_RESULTS][WIFI_SSID_MAX_LEN];
+static int scannedCount = 0;
+static int wifiListSelected = 0;
+static bool showUnsavedNetworkMessage = false;
 
 static void openWifi();
 static void openBluetooth();
@@ -105,6 +115,10 @@ static void handleCrossNavigation(bool upEdge, bool downEdge, bool leftEdge, boo
     switch (currentScreen) {
         case SCREEN_BADGE:
             if (upEdge) {
+                settingsFocus = 0;
+                settingsMode = 0;
+                showUnsavedNetworkMessage = false;
+
                 uiGoToScreen(SCREEN_SETTINGS);
             }
 
@@ -121,12 +135,6 @@ static void handleCrossNavigation(bool upEdge, bool downEdge, bool leftEdge, boo
 
             if (rightEdge) {
                 uiGoToScreen(SCREEN_GITHUB);
-            }
-            break;
-
-        case SCREEN_SETTINGS:
-            if (downEdge) {
-                uiGoToScreen(SCREEN_BADGE);
             }
             break;
 
@@ -254,6 +262,100 @@ static void handleContactsNavigation(bool upEdge, bool downEdge, bool leftEdge, 
     if (leftEdge) {
         nfcClear();
         contactIsTransmitting = false;
+
+        needsRedraw = true;
+    }
+}
+
+static void handleSettingsNavigation(bool upEdge, bool downEdge, bool leftEdge, bool rightEdge) {
+    if (settingsMode == 0) {
+        if (upEdge) {
+            if (settingsFocus == 1) {
+                settingsFocus = 0;
+            }
+            else {
+                uiGoToScreen(SCREEN_BADGE);
+
+                return;
+            }
+
+            needsRedraw = true;
+        }
+
+        if (downEdge) {
+            if (settingsFocus == 0) {
+                settingsFocus = 1;
+            }
+            else {
+                uiGoToScreen(SCREEN_BADGE);
+
+                return;
+            }
+
+            needsRedraw = true;
+        }
+
+        if (leftEdge || rightEdge) {
+            if (settingsFocus == 0) {
+                bool newState = !wifiIsEnabled();
+
+                wifiSetEnabled(newState);
+
+                if (newState) {
+                    scannedCount = wifiScanNetworks(scannedSsids, WIFI_SCAN_MAX_RESULTS);
+                    wifiListSelected = 0;
+                    showUnsavedNetworkMessage = false;
+                    settingsMode = 1;
+                }
+            }
+            else {
+                bleSetEnabled(!bleIsEnabled());
+            }
+
+            needsRedraw = true;
+        }
+
+        return;
+    }
+
+    // settingsMode == 1: found WiFi networks list
+    if (upEdge) {
+        if (wifiListSelected > 0) {
+            wifiListSelected--;
+        }
+        else {
+            settingsMode = 0;
+        }
+
+        needsRedraw = true;
+    }
+
+    if (downEdge) {
+        if (wifiListSelected < scannedCount - 1) {
+            wifiListSelected++;
+            needsRedraw = true;
+        }
+    }
+
+    if (leftEdge) {
+        settingsMode = 0;
+        needsRedraw = true;
+    }
+
+    if (rightEdge && scannedCount > 0) {
+        SavedNetworksList saved;
+        wifiNetworksLoad(&saved);
+
+        char password[WIFI_NETWORKS_PASSWORD_MAX_LEN];
+
+        if (wifiNetworksFind(&saved, scannedSsids[wifiListSelected], password)) {
+            wifiConnect(scannedSsids[wifiListSelected], password);
+            settingsMode = 0;
+            showUnsavedNetworkMessage = false;
+        }
+        else {
+            showUnsavedNetworkMessage = true;
+        }
 
         needsRedraw = true;
     }
@@ -394,8 +496,81 @@ static void drawContactScreen() {
 }
 
 static void drawSettingsScreen() {
-    fbDrawText(8, 16, "SETTINGS", FB_BLACK, 0);
-    fbDrawText(8, 32, "WIFI / BLUETOOTH", FB_BLACK, EINK_WIDTH - 16);
+    int centerX = EINK_WIDTH / 2;
+
+    if (settingsMode == 1) {
+        fbDrawText(4, 8, "SELECT NETWORK", FB_BLACK, 0);
+
+        if (scannedCount == 0) {
+            fbDrawText(4, 28, "NO NETWORKS FOUND", FB_BLACK, EINK_WIDTH - 8);
+
+            return;
+        }
+
+        SavedNetworksList saved;
+        wifiNetworksLoad(&saved);
+
+        int y = 28;
+
+        for (int i = 0; i < scannedCount; i++) {
+            bool isSelected = (i == wifiListSelected);
+            char dummy[WIFI_NETWORKS_PASSWORD_MAX_LEN];
+            bool isSaved = wifiNetworksFind(&saved, scannedSsids[i], dummy);
+
+            if (isSelected) {
+                fbDrawRect(0, y - 1, EINK_WIDTH, 14, true, FB_BLACK);
+            }
+
+            fbDrawText(4, y, scannedSsids[i], isSelected ? FB_WHITE : FB_BLACK, EINK_WIDTH - 20);
+
+            if (isSaved) {
+                fbDrawText(EINK_WIDTH - 12, y, "*", isSelected ? FB_WHITE : FB_BLACK, 0);
+            }
+
+            y += 14;
+        }
+
+        if (showUnsavedNetworkMessage) {
+            fbDrawText(4, EINK_HEIGHT - 24, "NO SAVED PASSWORD", FB_BLACK, EINK_WIDTH - 8);
+        }
+
+        if (showUnsavedNetworkMessage) {
+            fbDrawText(4, EINK_HEIGHT - 24, "ADD TO SD TO CONNECT", FB_BLACK, EINK_WIDTH - 8);
+        }
+
+        return;
+    }
+
+    // settingsMode == 0
+    int titleWidth = strlen("SETTINGS") * (FB_FONT_WIDTH + 1);
+    fbDrawText(centerX - titleWidth / 2, 8, "SETTINGS", FB_BLACK, 0);
+
+    int barY = 32;
+    int barHeight = 24;
+
+    bool wifiFocused = (settingsFocus == 0);
+    fbDrawRect(4, barY, EINK_WIDTH - 8, barHeight, wifiFocused, wifiFocused ? FB_BLACK : FB_WHITE);
+
+    if (!wifiFocused) {
+        fbDrawRect(4, barY, EINK_WIDTH - 8, barHeight, false, FB_BLACK);
+    }
+
+    fbDrawText(10, barY + 8, "WIFI", wifiFocused ? FB_WHITE : FB_BLACK, 0);
+    fbDrawText(EINK_WIDTH - 10 - 3 * (FB_FONT_WIDTH + 1), barY + 8, wifiIsEnabled() ? "ON" : "OFF", wifiFocused ? FB_WHITE : FB_BLACK, 0);
+
+    barY += barHeight + 8;
+    bool btFocused = (settingsFocus == 1);
+    fbDrawRect(4, barY, EINK_WIDTH - 8, barHeight, btFocused, btFocused ? FB_BLACK : FB_WHITE);
+
+    if (!btFocused) {
+        fbDrawRect(4, barY, EINK_WIDTH - 8, barHeight, false, FB_BLACK);
+    }
+
+    fbDrawText(10, barY + 8, "BLUETOOTH", btFocused ? FB_WHITE : FB_BLACK, 0);
+    fbDrawText(EINK_WIDTH - 10 - 3 * (FB_FONT_WIDTH + 1), barY + 8, bleIsEnabled() ? "ON" : "OFF", btFocused ? FB_WHITE : FB_BLACK, 0);
+
+    int logoWidth = strlen("UHBADGE") * (FB_FONT_WIDTH + 1);
+    fbDrawText(centerX - logoWidth / 2, EINK_HEIGHT - 20, "UHBADGE", FB_BLACK, 0);
 }
 
 static void drawGithubScreen() {
@@ -495,6 +670,9 @@ void uiUpdate() {
     }
     else if (currentScreen == SCREEN_CONTACT) {
         handleContactsNavigation(upEdge, downEdge, leftEdge, rightEdge);
+    }
+    else if (currentScreen == SCREEN_SETTINGS) {
+        handleSettingsNavigation(upEdge, downEdge, leftEdge, rightEdge);
     }
     else {
         handleCrossNavigation(upEdge, downEdge, leftEdge, rightEdge);
