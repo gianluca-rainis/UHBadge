@@ -9,9 +9,6 @@
 #include "../tools/wifiNetworks.h"
 #include "../tools/ble.h"
 
-#include <string.h>
-#include <stdio.h>
-
 static ScreenId currentScreen = SCREEN_BADGE;
 static bool needsRedraw = true;
 static bool firstFullRefreshDone = false;

@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdint.h>
+#include <string.h>
 
 #ifndef UHBADGE_UI
     #define UHBADGE_UI
