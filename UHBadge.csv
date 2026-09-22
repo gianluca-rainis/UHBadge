@@ -37,5 +37,5 @@ U3,1,W25Q128JVS,Package_SO:SOIC-8_5.3x5.3mm_P1.27mm,$2.53,C113767
 U4,1,SRV05-4,Package_TO_SOT_SMD:SOT-23-6,$0.56,C2836319
 U5,1,Conn,Connector_FFC-FPC:Jushuo_AFC07-S24FCA-00_1x24-1MP_P0.50_Horizontal,$0.66,C262567
 U6,1,ST25DV64K-JFR6D3,Package_DFN_QFN:ST_UFDFPN-12-1EP_3x3mm_P0.5mm_EP1.4x2.55mm,$2.11,C2654868
-U7,1,Radio Module 2,CustomFootprints:rpi_rmc20452t,
+U7,1,Radio Module 2,CustomFootprints:rpi_rmc20452t,"",""
 Y1,1,ABM8-272-T3,Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm,$0.32,C19270184
