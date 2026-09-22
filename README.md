@@ -4,6 +4,7 @@
 ![GitHub Release](https://img.shields.io/github/v/release/gianluca-rainis/UHBadge?logo=github&color=orange)
 ![GitHub Repo stars](https://img.shields.io/github/stars/gianluca-rainis/UHBadge)
 ![GitHub watchers](https://img.shields.io/github/watchers/gianluca-rainis/UHBadge)
+[![View PCB](images/pcbViewBadge.svg)](https://kicanvas.org/?repo=https://github.com/gianluca-rainis/UHBadge)
 
 ![UHBadge Logo](/images/UHBadge.png)
 
@@ -32,6 +33,34 @@ Every circuit and every design decision are the original work of the author.
 ## Development Tools
 - **PCB Design:** KiCad
 - **Documentation and code:** Visual Studio Code
+
+## PCB Manufacturing
+The Gerber files for PCB manufacturing are available in the [`gerber/`](gerber/) directory.
+
+## Project Structure
+```
+UHBadge/
+├── CustomFootprints.pretty/  # Custom footprints
+├── firmware/                 # The RP2350 firmware
+├── gerber/                   # PCB manufacturing files (Gerber format)
+├── images/                   # Documentation images
+├── .gitattributes            # Gitattributes file
+├── .gitignore                # Gitignore file
+├── gerber.zip                # Zip folder with all the gerber files
+├── UHBadge.kicad_pcb         # PCB layout file
+├── UHBadge.kicad_pro         # KiCad project file
+├── UHBadge.kicad_sch         # Schematic file
+├── UHBadge.step              # 3D model
+├── BOM.csv                   # Bill Of Materials
+├── LICENSE-CERN-OHL-S.md     # CERN-OHL-S License
+├── LICENSE-MIT.md            # MIT License
+└── README.md                 # This file
+```
+
+## Technical Details
+- **Size**: 70mm x 117.6mm
+- **Layers**: 2
+- **Supply Voltage**: 3v3
 
 ## Build the firmware
 From the directory of the repo:
