@@ -51,7 +51,7 @@ UHBadge/
 ├── UHBadge.kicad_pro         # KiCad project file
 ├── UHBadge.kicad_sch         # Schematic file
 ├── UHBadge.step              # 3D model
-├── UHBadge.csv                   # Bill Of Materials
+├── BOM.csv                   # Bill Of Materials
 ├── LICENSE-CERN-OHL-S.md     # CERN-OHL-S License
 ├── LICENSE-MIT.md            # MIT License
 └── README.md                 # This file

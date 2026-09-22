@@ -37,4 +37,4 @@ firmware/pico-sdk
 firmware/build/*
 
 !firmware/build/*.uf2
-!UHBadge.csv
+!BOM.csv
