@@ -597,7 +597,7 @@
           "group_by": false,
           "label": "Datasheet",
           "name": "Datasheet",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
@@ -609,13 +609,13 @@
           "group_by": false,
           "label": "LCSC Part #",
           "name": "LCSC Part #",
-          "show": false
+          "show": true
         },
         {
           "group_by": false,
           "label": "Descrizione",
           "name": "Description",
-          "show": false
+          "show": true
         },
         {
           "group_by": false,
@@ -672,7 +672,7 @@
         "uuid": "80dd4dc2-e1a5-4f20-a05b-f29ff7612afe"
       }
     ],
-    "used_designators": "J1-5,TP1-12,Q1,U1-7,C1-36,SW1-7,D1-8,#PWR1-73,Y1-2,P1,R1-19,BT1,H1-4,L1-3",
+    "used_designators": "L1-3,H1-4,BT1,R1-19,P1,U1-7,C1-36,SW1-7,Y1-2,#PWR1-73,D1-8,Q1,TP1-12,J1-5",
     "variants": []
   },
   "sheets": [
