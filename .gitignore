@@ -38,3 +38,4 @@ firmware/build/*
 
 !firmware/build/*.uf2
 !BOM.csv
+!production/*
