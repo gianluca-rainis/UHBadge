@@ -4,7 +4,7 @@
 ![GitHub Release](https://img.shields.io/github/v/release/gianluca-rainis/UHBadge?logo=github&color=orange)
 ![GitHub Repo stars](https://img.shields.io/github/stars/gianluca-rainis/UHBadge)
 ![GitHub watchers](https://img.shields.io/github/watchers/gianluca-rainis/UHBadge)
-[![View PCB](images/pcbViewBadge.svg)](https://kicanvas.org/?repo=https://github.com/gianluca-rainis/UHBadge)
+[![View PCB](images/pcbViewBadge.svg)](https://kicanvas.org/?repo=https://github.com/gianluca-rainis/UHBadge/blob/main/PCB)
 
 ![UHBadge Logo](/images/UHBadge.png)
 
